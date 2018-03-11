@@ -22,10 +22,16 @@ We can download the latest version of the PyCharm IDE [here](https://www.jetbrai
 Installing Python Modules can be done by typing ```> pip install package_name``` into the command prompt. We can also install packages directly from PyCharm: ```File --> Settings --> Under Project --> Configure Interpreter```. We can click on the green ```+``` to bring up a prompt with Python's official packages. 
 
 ## Modules to Install 
-Here are some major Python modules to install:
+Here are some major Python modules to install for the CWM Python 2018 Nights:
+1) ipython
+2) wheel
+3) requests
+4) beautifulsoup
+5) scrapy
+6) numpy+mkl
+7) pandas
+8) matplotlib
+9) keras
 
-
-
-
-
-dvddgdg
+### Other Sources for Python Package Installation 
+[Unofficial Python Package Index](https://www.lfd.uci.edu/~gohlke/pythonlibs/) for WINDOWS! 
