@@ -22,17 +22,17 @@ class Game():
             self.turn+=1
             self.outputStats()
             self.outputCommands()
-            command = raw_input("start game: ")
+            command = input("start game: ")
             if command == "1":
-                print "attacking with warrior"
+                print ("attacking with warrior")
                 self.warriorAttack()
             elif command == "2":
-                print "attacking with mage"
+                print ("attacking with mage")
                 self.mageAttack()
             elif command == "3":
-                print "skipped"
+                print ("skipped")
             elif command == "4":
-                print "game end"
+                print ("game end")
                 self.gameEnd = True
             if(self.gameEnd == False):
                 if(self.turn%2==0):
@@ -42,48 +42,48 @@ class Game():
     def checkHeroes(self):
         if(len(self.characters)==0):
             self.gameEnd = True
-            print "\n===== Results ======"
+            print ("\n===== Results ======")
             self.outputStats()
-            print "You Lose!"
+            print ("You Lose!")
         if(len(self.enemies)==0):
             self.gameEnd = True
-            print "\n===== Results ======"
+            print ("\n===== Results ======")
             self.outputStats()
-            print "You win!"
+            print ("You win!")
 
     def warriorAttack(self):
         if(self.warrior.hp <= 0):
-            print "warrior is dead"
+            print ("warrior is dead")
             return
         if(len(self.enemies)==0):
-            print "all enemies are dead!"
+            print ("all enemies are dead!")
             return
         index = random.randint(0,len(self.enemies)-1)
         enemy = self.enemies[index]
         enemy.hp = enemy.hp - (self.warrior.attack - enemy.defense)
         if(enemy.hp<=0):
             enemy.hp = 0
-            print enemy.name + " killed by " + self.warrior.name
+            print (enemy.name + " killed by " + self.warrior.name)
             self.enemies.pop(index)
         else:
-            print enemy.name + " hit!" 
+            print (enemy.name + " hit!")
 
     def mageAttack(self):
         if(self.mage.hp <= 0):
-            print "mage is dead"
+            print ("mage is dead")
             return
         if(len(self.enemies)==0):
-            print "all enemies are dead!"
+            print ("all enemies are dead!")
             return
         removeIndex = []
         for enemy in self.enemies:
             enemy.hp -= self.mage.attack
             if(enemy.hp<=0):
                 enemy.hp=0
-                print enemy.name + " killed by " + self.mage.name
+                print (enemy.name + " killed by " + self.mage.name)
                 removeIndex.append(enemy)
             else:
-                print enemy.name + " hit!" 
+                print (enemy.name + " hit!")
         for enemy in removeIndex:
             self.enemies.remove(enemy)
 
@@ -96,21 +96,21 @@ class Game():
             hero.hp -= (enemy.attack - hero.defense)
             if(hero.hp<=0):
                 hero.hp = 0
-                print hero.name + " killed by " + enemy.name
+                print (hero.name + " killed by " + enemy.name)
                 self.characters.remove(hero)
             else:
-                print hero.name + " hit by " + enemy.name
+                print (hero.name + " hit by " + enemy.name)
     def outputCommands(self):
-        print "1 - Attack with warrior (1 random enemy, high dmg)"
-        print "2 - Attack with mage (all enemies, low pierce dmg)"
-        print "4 - Quit"
+        print ("1 - Attack with warrior (1 random enemy, high dmg)")
+        print ("2 - Attack with mage (all enemies, low pierce dmg)")
+        print ("4 - Quit")
     def outputStats(self):
         if(self.gameEnd==False):
-            print "\nFight console - Turn " + str(self.turn)
-        print self.warrior.name + ": " + self.warrior.getHP()
-        print self.mage.name + ": " + self.mage.getHP() + "\n"
-        print self.goblin1.name + ": " + self.goblin1.getHP()
-        print self.goblin2.name + ": " + self.goblin2.getHP()
-        print self.dragon.name + ": " + self.dragon.getHP() + "\n"
+            print ("\nFight console - Turn " + str(self.turn))
+        print (self.warrior.name + ": " + self.warrior.getHP())
+        print (self.mage.name + ": " + self.mage.getHP() + "\n")
+        print (self.goblin1.name + ": " + self.goblin1.getHP())
+        print (self.goblin2.name + ": " + self.goblin2.getHP())
+        print (self.dragon.name + ": " + self.dragon.getHP() + "\n")
 
 Game()
