@@ -4,5 +4,5 @@ class Mage(Character):
     maxhp = 6
     hp = 6
     attack = 2
-    def __init__(self):
-        Character.__init__(self, "Mage")
+    def __init__(self, name = "Mage"):
+        Character.__init__(self, name)

@@ -8,7 +8,7 @@ import random
 class Game():
     warrior = Warrior()
     mage = Mage()
-
+    print ("Your adventurers got ambushed! (They attack every 2nd turn)")
     goblin1 = Goblin("Goblin 1")
     goblin2 = Goblin("Goblin 2")
     dragon = Dragon()
@@ -19,22 +19,26 @@ class Game():
     def __init__(self):
         
         while(self.gameEnd == False):
+            resetTurn = False
             self.turn+=1
             self.outputStats()
             self.outputCommands()
-            command = input("start game: ")
+            command = input("Enter command: ")
+            print("=========================\n")
             if command == "1":
                 print ("attacking with warrior")
                 self.warriorAttack()
             elif command == "2":
                 print ("attacking with mage")
                 self.mageAttack()
-            elif command == "3":
-                print ("skipped")
             elif command == "4":
                 print ("game end")
                 self.gameEnd = True
-            if(self.gameEnd == False):
+            else:
+                print("Invalid command!")
+                self.turn-=1
+                resetTurn = True
+            if(not resetTurn and self.gameEnd == False):
                 if(self.turn%2==0):
                     self.enemyAction()
                 self.checkHeroes()
