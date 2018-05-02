@@ -7,7 +7,10 @@ def main():
         soup = BeautifulSoup(fp, "html.parser")
 
     #setup
-    common_words = ["the", "of", "a", "and", "to", "in", "was"]
+    # common_words = []
+    common_words = ["the", "her", "she", "his", "he", "is",
+        "as", "be", "of", "a", "and", "to", "in", "was", "but", 
+        "that", "it", "i", "had", "you", "at", "for", "have"]
     dictionary = {}
 
     #build dictionary
@@ -15,7 +18,7 @@ def main():
         if child.name == "p" and child.string:
             words = child.string.split()
             for word in words:
-                word = word.lower()
+                word = word.lower().strip('?:!.,;')
                 if word is not None and word not in common_words and dictionary.get(word) is None:
                     dictionary[word] = 1
                 elif word is not None and word not in common_words and dictionary.get(word) is not None:
