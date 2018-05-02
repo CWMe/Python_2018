@@ -1,5 +1,5 @@
 from bs4 import BeautifulSoup
-from operator import itemgetter
+import collections
 
 def main():
     #open file
@@ -19,21 +19,15 @@ def main():
             words = child.string.split()
             for word in words:
                 word = word.lower().strip('?:!.,;')
-                if word is not None and word not in common_words and dictionary.get(word) is None:
-                    dictionary[word] = 1
-                elif word is not None and word not in common_words and dictionary.get(word) is not None:
-                    dictionary[word]+= 1
-
+                if word is not None and word not in common_words:
+                    if dictionary.get(word) is None:
+                        dictionary[word] = 1
+                    else:
+                        dictionary[word]+= 1
 
     #sort
-    sorted_x = sorted(dictionary.items(), key = itemgetter(1), reverse = True)
-
-
-    #output
-    print(f"{sorted_x[0]} is 1st most common")
-    print(f"{sorted_x[1]} is 2nd most common")
-    print(f"{sorted_x[2]} is 3rd most common")
-    print(f"{sorted_x[3]} is 4th most common")
-    print(f"{sorted_x[4]} is 5th most common")
+    word_counter = collections.Counter(dictionary)
+    for word, count in word_counter.most_common(5):
+        print(word, ":\t", count)
 
 main()
