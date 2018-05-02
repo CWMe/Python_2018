@@ -2,6 +2,7 @@
 ## Install
 ```
 pip install beautifulsoup4
+pip install certifi
 ```
 
 ## Run 1st example
@@ -12,6 +13,11 @@ python beautifulsoup-example.py
 ## Run 2nd example
 ```
 python beautifulsoup-book.py
+```
+
+## Run 3rd example
+```
+python beautifulsoup-bookweb.py
 ```
 
 # Scrapy

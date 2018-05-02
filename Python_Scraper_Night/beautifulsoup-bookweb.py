@@ -1,10 +1,11 @@
 from bs4 import BeautifulSoup
 import collections
+import urllib.request
+import certifi
 
 def main():
-    #open file
-    with open("book.html") as fp:
-        soup = BeautifulSoup(fp, "html.parser")
+    html = urllib.request.urlopen('https://www.gutenberg.org/files/161/161-h/161-h.htm',cafile=certifi.where()).read()
+    soup = BeautifulSoup(html, "html.parser")
 
     #setup
     # common_words = []
