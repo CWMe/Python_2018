@@ -17,14 +17,25 @@ and they lived at the bottom of a well.</p>
 """
 soup = BeautifulSoup(html_doc, "html.parser")
 
-
+#simple tag lookup
 tag = soup.find("p")
 print("1. Find P tag\n"+str(tag)+"\n")
 
-tag2 = soup.findAll("p")[1].prettify()
-print("2. Find P tag and pretty print\n"+str(tag2))
+#get all tags of a type, make it pretty
+tag2 = soup.findAll(["p","title"])
+print("2a. Find all P and title tags\n"+str(tag2)+"\n")
+print("2b. Pretty print one of these\n"+str(tag2[2].prettify())+"\n")
 
+#traverse up
+tag3 = soup.find("a").parent
+print("3. Find A tag's parent\n"+str(tag3)+"\n")
+
+#traverse down and sideways
+tag4 = soup.p.next_sibling.next_sibling
+print("4. Find sibling\n"+str(tag4)+"\n")
+
+#setup a function, pass it into beautful soup
 def has_class_but_no_id(tag):
     return tag.has_attr('class') and not tag.has_attr('id')
-tag3 = soup.findAll(has_class_but_no_id)
-print("3. Find tags that have classes but no id\n"+str(tag3))
+tag5 = soup.findAll(has_class_but_no_id)
+print("5. Find tags that have classes but no id\n"+str(tag5))
