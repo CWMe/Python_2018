@@ -1,20 +1,22 @@
 from bs4 import BeautifulSoup
 import collections
 
+
 def main():
-    #open file
+    # Open file
     with open("book.html") as fp:
         soup = BeautifulSoup(fp, "html.parser")
 
-    #setup
+    # setup
     # common_words = []
     common_words = ["the", "her", "she", "his", "he", "is",
-        "as", "be", "of", "a", "and", "to", "in", "was", "but", 
-        "that", "it", "i", "had", "you", "at", "for", "have"]
-    dictionary = {}
-    target = soup.findAll(['h3','p'])
+                    "as", "be", "of", "a", "and", "to", "in", "was", "but",
+                    "that", "it", "i", "had", "you", "at", "for", "have"]
 
-    #build dictionary
+    dictionary = {}
+    target = soup.findAll(['h3', 'p'])
+
+    # build dictionary
     for child in target:
         if child.name == "p" and child.string:
             words = child.string.split()
@@ -24,9 +26,9 @@ def main():
                     if dictionary.get(word) is None:
                         dictionary[word] = 1
                     else:
-                        dictionary[word]+= 1
+                        dictionary[word] += 1
 
-    #sort
+    # sort
     word_counter = collections.Counter(dictionary)
     for word, count in word_counter.most_common(5):
         print(word, ":\t", count)
