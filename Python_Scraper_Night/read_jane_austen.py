@@ -1,9 +1,10 @@
-#pip install html5lib
+# pip install html5lib
 
 from bs4 import BeautifulSoup
 from collections import Counter
 import requests
 from string import whitespace, punctuation
+
 r = requests.get("http://www.literaturepage.com/read/pollyanna-1.html")
 
 soup = BeautifulSoup(r.content, "html5lib")
@@ -21,4 +22,4 @@ print(important.most_common(6))
 
 # This prints most common words staring at most common.
 # We want to exclude the helper verbs, articles, and 'a.'
-# We are going to have a predefined set of words that we just dont want to analyze.
+# We are going to have a predefined set of words that we just don't want to analyze.
