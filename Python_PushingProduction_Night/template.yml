@@ -1,0 +1,34 @@
+AWSTemplateFormatVersion: 2010-09-09
+Transform:
+- AWS::Serverless-2016-10-31
+
+Resources:
+  CubeTopic:
+    Type: "AWS::SNS::Topic"
+  CubeMeFunction:
+    Type: "AWS::Serverless::Function"
+    Properties:
+      Description: This simply takes a cube of a number and returns it.
+      Handler: index.handler
+      Runtime: python2.7
+      MemorySize: 256
+      Timeout: 20
+      Environment:
+        Variables:
+          SNS_TOPIC_ARN: !Ref "CubeTopic"
+      Policies:
+        -
+          Version: "2012-10-17"
+          Statement:
+            -
+              Effect: "Allow"
+              Action:
+                - "sns:publish"
+              Resource:
+                - "arn:aws:sns:*:*:*"
+      Events:
+        PostEvent:
+          Type: Api
+          Properties:
+            Path: /
+            Method: post
