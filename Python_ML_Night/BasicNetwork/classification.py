@@ -20,12 +20,7 @@ def build_model(num_features, num_outputs=1):
 
     model = Sequential()
 
-    ## Input & hidden layer
-    model.add(Dense(3*num_features, input_shape=(num_features,), activation="relu"))
-    model.add(Dense(10*num_features, activation="relu"))
 
-    ## Add the output layer
-    model.add(Dense(num_outputs,activation="softmax"))
 
     ############################################
     # YOUR CODE GOES HERE
@@ -59,13 +54,13 @@ def encode(index, num_categories):
 
 if __name__=="__main__":
     ## Constants
-    num_samples = 1000
-    num_features = 4
-
     categories = [ "none", "one", "two", "3+"]
+    num_samples = 1000
+    num_features = len(categories)
 
     ## Data generation
     features = np.random.rand(num_samples, num_features)
+
     ## Count number of entries > 0.5
     output = []
     for i in np.sum(np.round(features), axis=1):
@@ -75,7 +70,13 @@ if __name__=="__main__":
     train_in, test_in = split_dataset(features)
     train_out, test_out = split_dataset(output)
 
-    model = build_model(num_features, len(categories))
+    model = Sequential()
+    
+    ## Input & hidden layer
+    model.add(Dense(3*num_features, input_shape=(num_features,), activation="relu"))
+    ## model.add(Dense(10*num_features, activation="relu"))
+    ## Add the output layer
+    model.add(Dense(len(categories),activation="softmax"))
     hist = train(train_in, train_out, model)
 
     ## Show the overall loss metric calculated on the test data
