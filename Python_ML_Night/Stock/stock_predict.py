@@ -66,7 +66,7 @@ model.add(Dense(units=300, kernel_initializer="uniform", activation="tanh"))
 model.add(Dense(units=1, kernel_initializer="uniform", activation="tanh"))
 
 # Stochastic gradient descent optimizer with some sensible defaults.
-sgd = optimizers.SGD(lr=0.01, momentum=0.9, nesterov=True)
+sgd = optimizers.SGD(lr=0.01, momentum=0.9)
 model.compile(loss='mean_squared_error',
               optimizer=sgd)
 
@@ -117,3 +117,6 @@ with open("model.json", "w") as json_file:
 model.save_weights("model.h5")
 print("Saved model to disk")
 
+## Alternatively to save the entire model to a 
+## single file.
+## model.save("whole_model.h5")
