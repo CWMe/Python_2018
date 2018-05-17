@@ -1,8 +1,9 @@
-NumPy
-TensorFlow
-matplotlib
-keras
-Pandas
+
+* NumPy
+* TensorFlow
+* matplotlib
+* keras
+* Pandas
 
 for Windows users it is HIGHLY recommended to install NumPy+MKL, it can be found at the 
 Unofficial Windows Binaries for Python Extension Packages:
