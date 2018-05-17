@@ -4,6 +4,7 @@ from datetime import datetime
 from keras import Sequential
 from keras.layers import Dense, LSTM, Dropout, Activation
 from keras import optimizers
+import matplotlib.pyplot as plt
 
 # Parse the time from a string so we can merge on dates.
 def parse(x):
@@ -93,7 +94,7 @@ for res in results:
     predicted.append(p)
     idx += 1
 
-import matplotlib.pyplot as plt
+### Plots
 plt.plot(hist.history['loss'])
 plt.show()
 
@@ -104,3 +105,15 @@ plt.show()
 plt.plot(expected)
 plt.plot(predicted)
 plt.show()
+
+
+### Save
+
+# serialize model to JSON
+model_json = model.to_json()
+with open("model.json", "w") as json_file:
+    json_file.write(model_json)
+# serialize weights to HDF5
+model.save_weights("model.h5")
+print("Saved model to disk")
+
