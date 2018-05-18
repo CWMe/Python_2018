@@ -12,7 +12,7 @@ def parse(x):
     return datetime.strptime(x, '%m/%d/%Y')
 
 
-def normalize(x ):
+def normalize(x):
     mean = x.mean()
     rg = x.max() - x.min()
     return (x - mean) / rg
@@ -45,7 +45,7 @@ spxData["50sma"] = spxData["Adj Close"].rolling(window=50).mean()
 spxData.dropna(inplace=True)
 
 # These are the columns we are interested in for training
-input_cols = ["Adj Close", "200sma", "50sma" ]
+input_cols = ["Adj Close", "200sma", "50sma"]
 
 # Now build the Training / Test data sets by splitting off this month.
 # The last 20 rows of the dataframe represent Nov, 2017. We'll use that to test with and the
@@ -91,7 +91,7 @@ predicted = []
 for res in results:
     e = (res[0] * r) + mu
     p = (test_output_data[idx] * r) + mu
-    print ("Expected:", e, "Actual:", p)
+    print("Expected:", e, "Actual:", p)
 
     expected.append(e)
     predicted.append(p)
