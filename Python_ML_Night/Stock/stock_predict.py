@@ -6,14 +6,17 @@ from keras.layers import Dense, LSTM, Dropout, Activation
 from keras import optimizers
 import matplotlib.pyplot as plt
 
+
 # Parse the time from a string so we can merge on dates.
 def parse(x):
     return datetime.strptime(x, '%m/%d/%Y')
+
 
 def normalize(x ):
     mean = x.mean()
     rg = x.max() - x.min()
     return (x - mean) / rg
+
 
 # Set the seed so that we have a reproducible output.
 np.random.seed(113017)
@@ -71,14 +74,14 @@ model.compile(loss='mean_squared_error',
               optimizer=sgd)
 
 # Uncomment this to view the model summary
-#model.summary()
+# model.summary()
 
 # Train the model.
 hist = model.fit(train_input_data_, train_output_data, epochs=15)
 
 results = model.evaluate(test_input_data, test_output_data)
-print ()
-print ("Model evaluation results (loss): " + str(results))
+print()
+print("Model evaluation results (loss): " + str(results))
 
 results = model.predict(test_input_data)
 
@@ -94,12 +97,12 @@ for res in results:
     predicted.append(p)
     idx += 1
 
-### Plots
+# Plots
 plt.plot(hist.history['loss'])
 plt.show()
 
 plt.plot(train_output_data)
-plt.plot(model.predict(train_input_data_),".")
+plt.plot(model.predict(train_input_data_), ".")
 plt.show()
 
 plt.plot(expected)
@@ -107,7 +110,7 @@ plt.plot(predicted)
 plt.show()
 
 
-### Save
+# Save
 
 # serialize model to JSON
 model_json = model.to_json()
@@ -117,6 +120,6 @@ with open("model.json", "w") as json_file:
 model.save_weights("model.h5")
 print("Saved model to disk")
 
-## Alternatively to save the entire model to a 
-## single file.
-## model.save("whole_model.h5")
+# Alternatively to save the entire model to a
+# single file.
+# model.save("whole_model.h5")
