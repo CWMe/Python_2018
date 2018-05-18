@@ -1,6 +1,6 @@
 # Data prep and generation
 import numpy as np
-import random
+
 
 # ML Framework
 from keras import Sequential, optimizers
@@ -23,7 +23,7 @@ def split_dataset(data_set, percent=0.75):
     return data_set[:data_pivot], data_set[data_pivot:]
 
 
-if __name__=="__main__":
+if __name__ == "__main__":
     # Constants
     num_samples = 1000
     num_features = 20
@@ -61,7 +61,7 @@ if __name__=="__main__":
 
     # This will plot the data we predict against the known values
     predictions = model.predict(test_in)
-    plt.plot(range(num_samples), output,'black')
+    plt.plot(range(num_samples), output, 'black')
     plt.plot(range(num_samples-len(predictions), num_samples), predictions, 'green')
     plt.plot(range(num_samples-len(predictions), num_samples), np.reshape(predictions, len(predictions), 1) - test_out, 'maroon')
     plt.show()

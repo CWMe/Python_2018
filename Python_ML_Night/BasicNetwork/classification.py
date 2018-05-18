@@ -1,6 +1,5 @@
 # Data prep and generation
 import numpy as np
-import random
 
 # ML Framework
 from keras import Sequential, optimizers
@@ -31,9 +30,9 @@ def encode(index, num_categories):
     return encoding
 
 
-if __name__=="__main__":
+if __name__ == "__main__":
     # Constants
-    categories = [ "none", "one", "two", "3+"]
+    categories = ["none", "one", "two", "3+"]
     num_samples = 1000
     num_features = len(categories)
 
@@ -55,7 +54,7 @@ if __name__=="__main__":
     model.add(Dense(3*num_features, input_shape=(num_features,), activation="relu"))
     # model.add(Dense(10*num_features, activation="relu"))
     # Add the output layer
-    model.add(Dense(len(categories),activation="softmax"))
+    model.add(Dense(len(categories), activation="softmax"))
     
     # Train
     model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
